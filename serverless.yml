@@ -12,7 +12,9 @@ provider:
   stackName: currency-formatter-${opt:stage, 'dev'}
   apiName: currency-formatter-${opt:stage, 'dev'}
   deploymentBucket:
-    name: currency.formatter.${opt:region, 'sa-east-1'}.deployments
+    name: currency-formatter
+  environment: 
+    MONGO_URI: ${env:MONGO_URI}
 
 custom:
   functionsBasePath: src

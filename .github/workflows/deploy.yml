@@ -1,0 +1,44 @@
+name: Deploy Production
+
+on:  
+  push:
+    branches:
+      - master
+
+jobs:        
+  deploy:
+    name: Deploy Production
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x] 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Set Up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Remove Dev Plugins from serverless.yml
+        run: |
+          sed "/serverless-offline/d" serverless.yml > serverless.tmp.yml
+          sed "/serverless-dotenv-plugin/d" serverless.yml > serverless.tmp.yml
+
+      - name: Install Dependencies
+        run: |
+          curl -sf https://gobinaries.com/tj/node-prune | sh
+          npm install
+
+      - name: Deploy
+        uses: serverless/github-action@master
+        with:
+          args: deploy --stage "prod" --region "us-east-1" --config serverless.tmp.yml
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+          MONGO_URI: ${{ secrets.MONGO_URI }}
