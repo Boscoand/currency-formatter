@@ -1,5 +1,6 @@
 # Currency Formatter
 
+[![Deploy CI](https://github.com/Boscoand/currency-formatter/workflows/Deploy%20Production/badge.svg)](https://github.com/Boscoand/currency-formatter/actions?query=workflow%3A%22Deploy%20Production%22")
 
 ## Getting Started
 
@@ -20,6 +21,14 @@ sls offline
 ```
 
 Then the Currency Formatter API will be running on http://localhost:3000/dev.
+
+## Documentation: 
+
+Visit the following [page](https://documenter.getpostman.com/view/3003759/TzXtKMFy). 
+
+## CI
+
+This project is automatically shipped to production after each commit merged into the master branch. This workflow was configured using Github Actions.
 
 ## Running the tests
 
