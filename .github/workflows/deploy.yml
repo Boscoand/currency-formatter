@@ -33,6 +33,10 @@ jobs:
           curl -sf https://gobinaries.com/tj/node-prune | sh
           npm install
 
+      - name: Run Tests
+        run: |
+          npm test
+
       - name: Deploy
         uses: serverless/github-action@master
         with:
