@@ -3,7 +3,7 @@ name: Deploy Production
 on:  
   push:
     branches:
-      - testing-ci
+      - master
 
 jobs:        
   deploy:
@@ -36,9 +36,9 @@ jobs:
       - name: Deploy
         uses: serverless/github-action@master
         with:
-          args: deploy --stage "prod" --config serverless.tmp.yml
+          args: deploy --stage "prod" --region "us-east-1" --config serverless.tmp.yml
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-          MONGO_URI: ${{ secrets.MONGO_URI }}
+          MONGO_URI: ${{ secrets.MONGO_URI_PROD }}
