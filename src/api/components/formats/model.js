@@ -5,10 +5,16 @@ const formatSchema = new mongoose.Schema({
     type: String,
   },
   code: {
-    type: String, required: true,
+    type: String, default: 'USD',
   },
   symbol: {
-    type: String, required: true,
+    type: String, default: '$',
+  },
+  currency: {
+    type: String, default: 'code',
+  },
+  currencyOnLeft: {
+    type: Boolean, default: true,
   },
   thousandsSeparator: {
     type: String, default: ',',
@@ -16,29 +22,25 @@ const formatSchema = new mongoose.Schema({
   decimalSeparator: {
     type: String, default: '.',
   },
-  symbolOnLeft: {
-    type: Boolean, default: false,
-  },
   decimalDigits: {
-    type: Number, defualt: 2,
+    type: Number, default: 2,
   },
 });
 
 const Format = mongoose.model('Format', formatSchema);
 
 const createFormat = async (body) => {
-  const {
-    market, code, symbol, thousandsSeparator, decimalSeparator, symbolOnLeft, decimalDigits,
-  } = body;
+  const { market, code, symbol, currency, currencyOnLeft, thousandsSeparator, decimalSeparator, decimalDigits } = body;
 
   try {
     const newFormat = new Format({
       _id: market,
       code,
       symbol,
+      currency,
+      currencyOnLeft,
       thousandsSeparator,
       decimalSeparator,
-      symbolOnLeft,
       decimalDigits,
     });
 
@@ -62,17 +64,16 @@ const readFormat = async (market) => {
 
     if (!format) throw new global.ErrorHandler(400, `Format for market ${market} does not exist`);
 
-    const {
-      code, symbol, thousandsSeparator, decimalSeparator, symbolOnLeft, decimalDigits,
-    } = format;
+    const { code, symbol, currency, currencyOnLeft, thousandsSeparator, decimalSeparator, decimalDigits } = format;
 
     return {
       market,
       code,
       symbol,
+      currency,
+      currencyOnLeft,
       thousandsSeparator,
       decimalSeparator,
-      symbolOnLeft,
       decimalDigits,
     };
   } catch (err) {
@@ -84,7 +85,7 @@ const readFormat = async (market) => {
 const updateFormat = async (body) => {
   try {
     const {
-      market, code, symbol, thousandsSeparator, decimalSeparator, symbolOnLeft, decimalDigits,
+      market, code, symbol, currency, currencyOnLeft, thousandsSeparator, decimalSeparator, decimalDigits,
     } = body;
 
     const _id = market;
@@ -92,9 +93,10 @@ const updateFormat = async (body) => {
     const newFormat = {
       code,
       symbol,
+      currency,
+      currencyOnLeft,
       thousandsSeparator,
       decimalSeparator,
-      symbolOnLeft,
       decimalDigits,
     };
 

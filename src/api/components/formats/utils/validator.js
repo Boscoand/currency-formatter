@@ -15,14 +15,18 @@ const formatSchema = {
     symbol: {
       type: 'string',
     },
+    currency: {
+      type: 'string',
+      enum: ['code', 'symbol'],
+    },
+    currencyOnLeft: {
+      type: 'boolean',
+    },
     thousandsSeparator: {
       type: 'string',
     },
     decimalSeparator: {
       type: 'string',
-    },
-    symbolOnLeft: {
-      type: 'boolean',
     },
     decimalDigits: {
       type: 'integer',

@@ -24,9 +24,10 @@ describe('POST /formats', () => {
       market: 'Ecuador',
       code: 'USD',
       symbol: '$',
+      currency: 'code',
+      currencyOnLeft: true,
       thousandsSeparator: ',',
       decimalSeparator: '.',
-      symbolOnLeft: true,
       decimalDigits: 2,
     };
 
@@ -72,9 +73,10 @@ describe('GET /formats', () => {
         res.body.data.format.should.have.property('market');
         res.body.data.format.should.have.property('code');
         res.body.data.format.should.have.property('symbol');
+        res.body.data.format.should.have.property('currency');
+        res.body.data.format.should.have.property('currencyOnLeft');
         res.body.data.format.should.have.property('thousandsSeparator');
         res.body.data.format.should.have.property('decimalSeparator');
-        res.body.data.format.should.have.property('symbolOnLeft');
         res.body.data.format.should.have.property('decimalDigits');
         done();
       });
