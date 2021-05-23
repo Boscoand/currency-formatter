@@ -1,0 +1,31 @@
+{
+  "name": "currency-formatter",
+  "version": "1.0.0",
+  "description": "Currency Format API",
+  "main": "index.js",
+  "scripts": {
+    "test": ""
+  },
+  "author": "Bosco Andrade",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.26.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.3",
+    "serverless-dotenv-plugin": "^3.9.0",
+    "serverless-functions-base-path": "^1.0.32",
+    "serverless-offline": "^7.0.0"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "serverless-http": "^2.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Boscoand/currency-formatter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Boscoand/currency-formatter/issues"
+  },
+  "homepage": "https://github.com/Boscoand/currency-formatter#readme"
+}

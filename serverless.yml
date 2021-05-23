@@ -1,0 +1,32 @@
+service: currency-formatter
+
+frameworkVersion: '2'
+
+package:
+  excludeDevDependencies: true
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, 'dev'} 
+  stackName: currency-formatter-${opt:stage, 'dev'}
+  apiName: currency-formatter-${opt:stage, 'dev'}
+  deploymentBucket:
+    name: currency.formatter.${opt:region, 'sa-east-1'}.deployments
+
+custom:
+  functionsBasePath: src
+  
+plugins:
+  - serverless-offline
+  - serverless-dotenv-plugin
+  - serverless-functions-base-path
+functions:
+  currencyFormatter:
+    handler: index.handler
+    name: currency-formatter-${opt:stage, 'dev'}
+    events:
+      - http: POST /format
+      - http: GET /format
+      - http: PATH /format
+      - http: DELETE /format

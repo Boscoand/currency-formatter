@@ -1,0 +1,11 @@
+# Package directories
+node_modules
+
+# Serverless directories
+.serverless
+
+# Dependency Files
+package-lock.json
+
+# Secret files
+*.env
