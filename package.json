@@ -4,7 +4,7 @@
   "description": "Currency Format API",
   "main": "index.js",
   "scripts": {
-    "test": ""
+    "test": "mocha src/**/tests/*.js --timeout 60000"
   },
   "author": "Bosco Andrade",
   "license": "ISC",
@@ -12,12 +12,22 @@
     "eslint": "^7.26.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.23.3",
+    "mongodb-memory-server": "^6.9.6",
     "serverless-dotenv-plugin": "^3.9.0",
     "serverless-functions-base-path": "^1.0.32",
     "serverless-offline": "^7.0.0"
   },
   "dependencies": {
+    "ajv": "^8.5.0",
+    "body-parser": "^1.19.0",
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "mocha": "^8.4.0",
+    "mongoose": "^5.12.10",
     "serverless-http": "^2.7.0"
   },
   "repository": {

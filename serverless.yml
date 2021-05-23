@@ -26,7 +26,7 @@ functions:
     handler: index.handler
     name: currency-formatter-${opt:stage, 'dev'}
     events:
-      - http: POST /format
-      - http: GET /format
-      - http: PATH /format
-      - http: DELETE /format
+      - http: POST /formats
+      - http: GET /formats
+      - http: PATCH /formats
+      - http: DELETE /formats
